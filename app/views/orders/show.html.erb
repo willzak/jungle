@@ -2,10 +2,30 @@
 
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
+
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <h3>Thank you for your order!</h3>
+    <h4> A receipt will be sent to <%= @order.email %></h4>
+    <div class="panel panel-default items">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">Product</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+           <% @order.line_items.each do |item| %>
+            <%= render 'line_item', product: (Product.find item[:product_id]), price: item[:item_price_cents], quantity: item[:quantity].to_i %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <h4>Order Total: <%= humanized_money_with_symbol(@order.total_cents / 100.0) %></h4>
   </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
