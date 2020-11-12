@@ -85,4 +85,37 @@ main section.products-show {
   }
 }
 
+.form-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.forms {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  padding: 15px;
+}
+
+.form-field {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #777;
+}
+
+.alert-danger {
+  margin-top: 50px;
+}
+
 

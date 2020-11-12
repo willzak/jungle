@@ -1,17 +1,34 @@
-<h1>Signup!</h1>
+<section class="form-page">
+  <h1>Signup</h1>
 
-<% if @error %>
-  <div class="alert alert-danger">
-    <h4>Sorry, it looks like did not input your password correctly</h4>
-  </div>
-<% end %>
+  <% if @error_signup %>
+    <div class="alert alert-danger">
+      <h4>Sorry, it looks like something went wrong with your responses</h4>
+    </div>
+  <% end %>
 
-<%= form_for :user, url: '/users' do |f| %>
+  <%= form_for :user, url: '/users' do |f| %>
+    <div class="alert alert-info forms">
+      Name:
+      <div class ="form-field">
+        <%= f.text_field :name %>
+      </div>
+      Email:
+      <div class ="form-field">
+        <%= f.text_field :email %>
+      </div>
+      Password:
+      <div class ="form-field">
+        <%= f.password_field :password %>
+      </div>
+      Password Confirmation: 
+      <div class ="form-field">
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div class ="form-field button">
+        <%= f.submit "Submit" %>
+      </div>
+    <div>
 
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
-<% end %>
+  <% end %>
+</section>
