@@ -33,5 +33,7 @@ RSpec.describe User, type: :model do
       expect(@user.name).to include(" ")
     end
 
+    it 'requires password to have min length of 6'
+
   end
 end
