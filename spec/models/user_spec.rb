@@ -33,7 +33,34 @@ RSpec.describe User, type: :model do
       expect(@user.name).to include(" ")
     end
 
-    it 'requires password to have min length of 6'
+    it 'requires password to have min length of 6' do
+      @user = User.new({name: "Hakan Hellstrom", email: 'hakan@gmail.com', password: 'a', password_confirmation: 'a'})
+      expect { @user.save! }.to raise_error
+    end
+  end
 
+  describe '.authenticate_with_credentials' do
+    it 'returns nil if fails' do
+      @user = User.new({name: "Hakan Hellstrom", email: 'hakan@gmail.com', password: 'agoodpassword', password_confirmation: 'agoodpassword'})
+      @user.save!
+      res = User.authenticate_with_credentials(@user.email, "nope")
+      expect(res).to eq(nil)
+    end
+
+    it 'allows user to login if they include extra spaces before or after' do
+      @user = User.new({name: "Hakan Hellstrom", email: 'hakan@gmail.com', password: 'agoodpassword', password_confirmation: 'agoodpassword'})
+      @user.save
+
+      res = User.authenticate_with_credentials("  hakan@gmail.com ", @user.password)
+      expect(res).to eq(@user)
+    end
+
+    it 'allows user to login if they type in their email using the wrong cases' do
+      @user = User.new({name: "Hakan Hellstrom", email: 'hakan@gmail.com', password: 'agoodpassword', password_confirmation: 'agoodpassword'})
+      @user.save
+
+      res = User.authenticate_with_credentials("HaKaN@gMaIl.CoM", @user.password)
+      expect(res).to eq(@user)
+    end
   end
 end
