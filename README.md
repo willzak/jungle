@@ -1,6 +1,14 @@
-# Jungle
+# Jungle 🦁
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+Welcome to the Jungle! Jungle is a mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example from Lighthouse Labs.
+
+The project is meant to feature the front-end and back-end uses of rails, as well as simulating working on a project that is half completed. 
+
+Features:
+- Checkout confirmation when a transaction is processed
+- "SOLD OUT" buttons on products with no quantity left
+- User and Admin logins, and views security
+- Formatted money UI and notifications for an empty cart
 
 
 ## Setup
